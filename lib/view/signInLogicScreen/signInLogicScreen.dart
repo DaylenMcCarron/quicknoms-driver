@@ -14,7 +14,7 @@ class _SignInLogicScreenState extends State<SignInLogicScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      //MobileAuthServices.checkAuthentication(context);
+      MobileAuthServices.checkAuthentication(context);
     });
   }
 

@@ -8,98 +8,99 @@ import 'package:quicknomsdriver/constants/constants.dart';
 import 'package:quicknomsdriver/controller/provider/authProvider/mobileAuthProvider.dart';
 import 'package:quicknomsdriver/view/authScreens/mobileLoginScreen.dart';
 import 'package:quicknomsdriver/view/authScreens/otpScreen.dart';
+import 'package:quicknomsdriver/view/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:quicknomsdriver/view/signInLogicScreen/signInLogicScreen.dart';
 
 class MobileAuthServices {
-  // static checkAuthentication(BuildContext context) {
-  //   User? user = auth.currentUser;
-  //   if (user == null) {
-  //     Navigator.pushAndRemoveUntil(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => const MobileLoginScreen()),
-  //         (route) => false);
-  //     return false;
-  //   }
-  //   //checkUserRegistration(context: context);
-  // }
+  static checkAuthentication(BuildContext context) {
+    User? user = auth.currentUser;
+    if (user == null) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const MobileLoginScreen()),
+          (route) => false);
+      return false;
+    }
+    checkUserRegistration(context: context);
+  }
 
-  // static receiveOTP(
-  //     {required BuildContext context, required String mobileNo}) async {
-  //   try {
-  //     await auth.verifyPhoneNumber(
-  //       phoneNumber: mobileNo,
-  //       verificationCompleted: (PhoneAuthCredential credentials) {
-  //         log(credentials.toString());
-  //       },
-  //       verificationFailed: (FirebaseAuthException exception) {
-  //         log(exception.toString());
-  //         throw Exception(exception);
-  //       },
-  //       codeSent: (String verificationID, int? resendToken) {
-  //         context
-  //             .read<MobileAuthProvider>()
-  //             .updateVerificationID(verificationID);
-  //         Navigator.push(
-  //           context,
-  //           PageTransition(
-  //             child: const OTPScreen(),
-  //             type: PageTransitionType.rightToLeft,
-  //           ),
-  //         );
-  //       },
-  //       codeAutoRetrievalTimeout: (String verificationID) {},
-  //     );
-  //   } catch (e) {
-  //     log(e.toString());
-  //     throw Exception(e);
-  //   }
-  // }
+  static receiveOTP(
+      {required BuildContext context, required String mobileNo}) async {
+    try {
+      await auth.verifyPhoneNumber(
+        phoneNumber: mobileNo,
+        verificationCompleted: (PhoneAuthCredential credentials) {
+          log(credentials.toString());
+        },
+        verificationFailed: (FirebaseAuthException exception) {
+          log(exception.toString());
+          throw Exception(exception);
+        },
+        codeSent: (String verificationID, int? resendToken) {
+          context
+              .read<MobileAuthProvider>()
+              .updateVerificationID(verificationID);
+          Navigator.push(
+            context,
+            PageTransition(
+              child: const OTPScreen(),
+              type: PageTransitionType.rightToLeft,
+            ),
+          );
+        },
+        codeAutoRetrievalTimeout: (String verificationID) {},
+      );
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
 
-  // static verifyOTP({required BuildContext context, required String otp}) async {
-  //   try {
-  //     AuthCredential credential = PhoneAuthProvider.credential(
-  //       verificationId: context.read<MobileAuthProvider>().verificationID!,
-  //       smsCode: otp,
-  //     );
-  //     await auth.signInWithCredential(credential);
-  //     Navigator.push(
-  //       context,
-  //       PageTransition(
-  //         child: const SignInLogicScreen(),
-  //         type: PageTransitionType.rightToLeft,
-  //       ),
-  //     );
-  //   } catch (e) {
-  //     log(e.toString());
-  //     throw Exception(e);
-  //   }
-  // }
+  static verifyOTP({required BuildContext context, required String otp}) async {
+    try {
+      AuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: context.read<MobileAuthProvider>().verificationID!,
+        smsCode: otp,
+      );
+      await auth.signInWithCredential(credential);
+      Navigator.push(
+        context,
+        PageTransition(
+          child: const SignInLogicScreen(),
+          type: PageTransitionType.rightToLeft,
+        ),
+      );
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
 
-  // static checkUserRegistration({required BuildContext context}) async {
-  //   try {
-  //     bool userIsRegistered = await ProfileServices.checkForRegistration();
+  static checkUserRegistration({required BuildContext context}) async {
+    try {
+      // bool userIsRegistered = await ProfileServices.checkForRegistration();
 
-  //     if (userIsRegistered) {
+      // if (userIsRegistered) {
 
-  //       Navigator.pushAndRemoveUntil(
-  //         context,
-  //         PageTransition(
-  //             child: const BottomNavigationBarUberEats(),
-  //             type: PageTransitionType.rightToLeft),
-  //         (route) => false,
-  //       );
-  //     } else {
-  //       Navigator.pushAndRemoveUntil(
-  //         context,
-  //         PageTransition(
-  //             child: const DriverRegistrationScreen(),
-  //             type: PageTransitionType.rightToLeft),
-  //         (route) => false,
-  //       );
-  //     }
-  //   } catch (e) {
-  //     log(e.toString());
-  //     throw Exception(e);
-  //   }
-  // }
+      Navigator.pushAndRemoveUntil(
+        context,
+        PageTransition(
+            child: const BottomNavigationBarQuickNoms(),
+            type: PageTransitionType.rightToLeft),
+        (route) => false,
+      );
+      //   } else {
+      //     Navigator.pushAndRemoveUntil(
+      //       context,
+      //       PageTransition(
+      //           child: const DriverRegistrationScreen(),
+      //           type: PageTransitionType.rightToLeft),
+      //       (route) => false,
+      //     );
+      //   }
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
 }

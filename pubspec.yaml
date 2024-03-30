@@ -55,7 +55,7 @@ dependencies:
   flutter_polyline_points: ^2.0.0
   intl: 0.18.1
   geoflutterfire2: ^2.3.15
-  mapbox_maps_flutter: ^1.0.0
+  # mapbox_maps_flutter: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
