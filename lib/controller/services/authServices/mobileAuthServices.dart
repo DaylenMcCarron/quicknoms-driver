@@ -6,9 +6,11 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:quicknomsdriver/constants/constants.dart';
 import 'package:quicknomsdriver/controller/provider/authProvider/mobileAuthProvider.dart';
+import 'package:quicknomsdriver/controller/services/profileServices/profileServices.dart';
 import 'package:quicknomsdriver/view/authScreens/mobileLoginScreen.dart';
 import 'package:quicknomsdriver/view/authScreens/otpScreen.dart';
 import 'package:quicknomsdriver/view/bottomNavigationBar/bottomNavigationBar.dart';
+import 'package:quicknomsdriver/view/driverRegistrationScreen/driverRegistrationScreen.dart';
 import 'package:quicknomsdriver/view/signInLogicScreen/signInLogicScreen.dart';
 
 class MobileAuthServices {
@@ -78,26 +80,25 @@ class MobileAuthServices {
 
   static checkUserRegistration({required BuildContext context}) async {
     try {
-      // bool userIsRegistered = await ProfileServices.checkForRegistration();
+      bool userIsRegistered = await ProfileServices.checkForRegistration();
 
-      // if (userIsRegistered) {
-
-      Navigator.pushAndRemoveUntil(
-        context,
-        PageTransition(
-            child: const BottomNavigationBarQuickNoms(),
-            type: PageTransitionType.rightToLeft),
-        (route) => false,
-      );
-      //   } else {
-      //     Navigator.pushAndRemoveUntil(
-      //       context,
-      //       PageTransition(
-      //           child: const DriverRegistrationScreen(),
-      //           type: PageTransitionType.rightToLeft),
-      //       (route) => false,
-      //     );
-      //   }
+      if (userIsRegistered) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          PageTransition(
+              child: const BottomNavigationBarQuickNoms(),
+              type: PageTransitionType.rightToLeft),
+          (route) => false,
+        );
+      } else {
+        Navigator.pushAndRemoveUntil(
+          context,
+          PageTransition(
+              child: const DriverRegistrationScreen(),
+              type: PageTransitionType.rightToLeft),
+          (route) => false,
+        );
+      }
     } catch (e) {
       log(e.toString());
       throw Exception(e);

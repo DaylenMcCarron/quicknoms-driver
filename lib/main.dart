@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quicknomsdriver/controller/provider/authProvider/mobileAuthProvider.dart';
+import 'package:quicknomsdriver/controller/provider/profileProvider/profileProvider.dart';
 import 'package:quicknomsdriver/firebase_options.dart';
+import 'package:quicknomsdriver/view/driverRegistrationScreen/driverRegistrationScreen.dart';
 import 'package:quicknomsdriver/view/signInLogicScreen/signInLogicScreen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,9 +27,9 @@ class UberEats extends StatelessWidget {
           ChangeNotifierProvider<MobileAuthProvider>(
             create: (_) => MobileAuthProvider(),
           ),
-          // ChangeNotifierProvider<ProfileProvider>(
-          //   create: (_) => ProfileProvider(),
-          // ),
+          ChangeNotifierProvider<ProfileProvider>(
+            create: (_) => ProfileProvider(),
+          ),
           // ChangeNotifierProvider<RideProvider>(
           //   create: (_) => RideProvider(),
           // ),
@@ -39,6 +41,7 @@ class UberEats extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(),
+          // home: const DriverRegistrationScreen(),
           home: const SignInLogicScreen(),
         ),
       );
