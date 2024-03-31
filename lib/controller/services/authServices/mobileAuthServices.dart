@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:quicknomsdriver/constants/constants.dart';
 import 'package:quicknomsdriver/controller/provider/authProvider/mobileAuthProvider.dart';
 import 'package:quicknomsdriver/controller/services/profileServices/profileServices.dart';
+import 'package:quicknomsdriver/controller/services/pushNotificationServices/pushNotificationServices.dart';
 import 'package:quicknomsdriver/view/authScreens/mobileLoginScreen.dart';
 import 'package:quicknomsdriver/view/authScreens/otpScreen.dart';
 import 'package:quicknomsdriver/view/bottomNavigationBar/bottomNavigationBar.dart';
@@ -83,6 +84,7 @@ class MobileAuthServices {
       bool userIsRegistered = await ProfileServices.checkForRegistration();
 
       if (userIsRegistered) {
+        PushNotificationServices.initializeFCM(context);
         Navigator.pushAndRemoveUntil(
           context,
           PageTransition(
