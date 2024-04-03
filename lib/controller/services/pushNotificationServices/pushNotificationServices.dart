@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:quicknomsdriver/constants/constants.dart';
+import 'package:quicknomsdriver/controller/services/pushNotificationServices/pushNotificationDialogue.dart';
 
 class PushNotificationServices {
   static FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
@@ -15,9 +16,9 @@ class PushNotificationServices {
       RemoteMessage message,
     ) {
       if (message.notification != null) {
-        // log(message.toMap().toString());
-        // log('The message Data is ');
-        // log(message.data.toString());
+        log(message.toMap().toString());
+        log('The message Data is ');
+        log(message.data.toString());
 
         firebaseMessagingForegroundHandler(message, context);
       }
@@ -29,15 +30,16 @@ class PushNotificationServices {
 
   static Future<void> firebaseMessagingForegroundHandler(
       RemoteMessage message, BuildContext context) async {
-    // // log(message.data.toString());
-    // try {
-    //   log('The message Data is ');
-    //   log(message.data.toString());
-    //   log(message.data['foodOrderID']);
-    //   PushNotificationDialogue.deliveryRequestDialogue(message.data['foodOrderID'], context);
-    // } catch (e) {
-    //   log(e.toString());
-    // }
+    // log(message.data.toString());
+    try {
+      log('The message Data is ');
+      log(message.data.toString());
+      log(message.data['foodOrderID']);
+      PushNotificationDialogue.deliveryRequestDialogue(
+          message.data['foodOrderID'], context);
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   static Future getToken() async {

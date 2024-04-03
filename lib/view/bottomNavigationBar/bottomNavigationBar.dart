@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:quicknomsdriver/controller/services/pushNotificationServices/pushNotificationServices.dart';
 import 'package:quicknomsdriver/view/accountScreen/accountScreen.dart';
 import 'package:quicknomsdriver/view/historyScreen/historyScreen.dart';
 import 'package:quicknomsdriver/view/homeScreen/homeScreen.dart';
@@ -19,6 +20,7 @@ class _BottomNavigationBarQuickNomsState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {});
+    PushNotificationServices.initializeFCM(context);
   }
 
   PersistentTabController _controller =

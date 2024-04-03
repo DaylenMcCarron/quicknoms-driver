@@ -33,7 +33,7 @@ class ImageServices {
     await Future.forEach(images, (image) async {
       String imageName = '$sellerUID${uuid.v1().toString()}';
       Reference ref =
-          storage.ref().child('ResturantBannerImages').child(imageName);
+          storage.ref().child('restaurantBannerImages').child(imageName);
       await ref.putFile(File(image.path));
       String imageURL = await ref.getDownloadURL();
       imagesURL.add(imageURL);

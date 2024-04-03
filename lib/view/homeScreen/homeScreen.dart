@@ -240,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
           //   myLocationEnabled: true,
           //   zoomControlsEnabled: true,
           //   polylines: rideProvider
-          //       .polylineSetTowardsResturant,
+          //       .polylineSetTowardsrestaurant,
           //   markers: rideProvider.deliveryMarker,
           //   zoomGesturesEnabled: true,
           //   onMapCreated:

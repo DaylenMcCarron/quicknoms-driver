@@ -218,11 +218,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
     //                                       text: TextSpan(
     //                                         children: [
     //                                           TextSpan(
-    //                                               text: 'Resturant: ',
+    //                                               text: 'restaurant: ',
     //                                               style: AppTextStyles.body14),
     //                                           TextSpan(
     //                                             text: currentFoodData
-    //                                                 .resturantDetails
+    //                                                 .restaurantDetails
     //                                                 .restaurantName,
     //                                             style: AppTextStyles.body14,
     //                                           ),
@@ -260,7 +260,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     //           //   padding: EdgeInsets.symmetric(vertical: 2.h),
     //           //   query: realTimeDatabaseRef
     //           //       .child('OrderHistory')
-    //           //       .orderByChild('resturantUID')
+    //           //       .orderByChild('restaurantUID')
     //           //       .equalTo(auth.currentUser!.uid),
     //           //   itemBuilder: (context, snapshot, animation, index) {
     //           //     FoodOrderModel foodData = FoodOrderModel.fromMap(

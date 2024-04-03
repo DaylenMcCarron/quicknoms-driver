@@ -84,7 +84,6 @@ class MobileAuthServices {
       bool userIsRegistered = await ProfileServices.checkForRegistration();
 
       if (userIsRegistered) {
-        PushNotificationServices.initializeFCM(context);
         Navigator.pushAndRemoveUntil(
           context,
           PageTransition(

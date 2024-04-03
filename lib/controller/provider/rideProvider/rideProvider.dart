@@ -6,6 +6,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:quicknomsdriver/controller/services/locationService/locationService.dart';
+import 'package:quicknomsdriver/model/foodOrderModel/foodOrderModel.dart';
 import 'package:quicknomsdriver/utils/colors.dart';
 
 class RideProvider extends ChangeNotifier {
@@ -14,41 +15,41 @@ class RideProvider extends ChangeNotifier {
   LatLng? deliveryGuyLocation;
   LatLng? deliveryLocation;
   Set<Marker> deliveryMarker = Set<Marker>();
-  // FoodOrderModel? orderData;
+  FoodOrderModel? orderData;
 
   // Marker
   BitmapDescriptor? destinationIcon;
   BitmapDescriptor? crrLocationIcon;
   bool inDelivery = false;
   List<LatLng> polylineCoordinatesListTowardsDelivery = [];
-  List<LatLng> polylineCoordinatesListTowardsResturant = [];
+  List<LatLng> polylineCoordinatesListTowardsrestaurant = [];
 
   // Map Polyline Towards Delivery Location
   Set<Polyline> polylineSetTowardsDelivery = {};
-  //  Map Polyline Towards Resturant
-  Set<Polyline> polylineSetTowardsResturant = {};
+  //  Map Polyline Towards restaurant
+  Set<Polyline> polylineSetTowardsrestaurant = {};
   Polyline? polylineTowardsDelivery;
-  Polyline? polylineTowardsResturant;
-  LatLng? resturantLoaction;
+  Polyline? polylineTowardsrestaurant;
+  LatLng? restaurantLoaction;
 
-  // updateOrderData(FoodOrderModel data) {
-  //   orderData = data;
-  //   notifyListeners();
-  // }
+  updateOrderData(FoodOrderModel data) {
+    orderData = data;
+    notifyListeners();
+  }
 
-  // updateInDeliveryStatus(bool newStatus) {
-  //   inDelivery = newStatus;
-  //   notifyListeners();
-  // }
+  updateInDeliveryStatus(bool newStatus) {
+    inDelivery = newStatus;
+    notifyListeners();
+  }
 
   updateCurrentPositon(Position crrPosition) {
     currentPosition = crrPosition;
     notifyListeners();
   }
 
-//   updateDeliveryLatLngs(LatLng deliveryGuy, LatLng resturant, LatLng delivery) {
+//   updateDeliveryLatLngs(LatLng deliveryGuy, LatLng restaurant, LatLng delivery) {
 //     deliveryGuyLocation = deliveryGuy;
-//     resturantLoaction = resturant;
+//     restaurantLoaction = restaurant;
 //     deliveryLocation = delivery;
 //     notifyListeners();
 //   }
@@ -81,24 +82,24 @@ class RideProvider extends ChangeNotifier {
 //     return poliline;
 //   }
 
-//   fetchCrrLocationToResturantPoliline(BuildContext context) async {
-//     polylineSetTowardsResturant.clear();
+//   fetchCrrLocationTorestaurantPoliline(BuildContext context) async {
+//     polylineSetTowardsrestaurant.clear();
 //     DirectionModel directionModel = await DirectionServices.getDirectionDetails(
 //       deliveryGuyLocation!,
-//       resturantLoaction!,
+//       restaurantLoaction!,
 //       context,
 //     );
 
 //     Polyline polyline = decodePolyline(directionModel.polylinePoints);
-//     polylineSetTowardsResturant.add(polyline);
+//     polylineSetTowardsrestaurant.add(polyline);
 //     notifyListeners();
 //     log(polyline.toString());
 //   }
 
-//   fetchResturantToDeliveryPoliline(BuildContext context) async {
+//   fetchrestaurantToDeliveryPoliline(BuildContext context) async {
 //     polylineSetTowardsDelivery.clear();
 //     DirectionModel directionModel = await DirectionServices.getDirectionDetails(
-//       resturantLoaction!,
+//       restaurantLoaction!,
 //       deliveryLocation!,
 //       context,
 //     );
@@ -134,9 +135,9 @@ class RideProvider extends ChangeNotifier {
 //     deliveryMarker = Set<Marker>();
 //     Position crrPositon = await LocationServices.getCurrentLocation();
 //     FoodOrderModel itemOrderData = orderData!;
-//     LatLng resturantLocation = LatLng(
-//         itemOrderData.resturantDetails.address!.latitude!,
-//         itemOrderData.resturantDetails.address!.longitude!);
+//     LatLng restaurantLocation = LatLng(
+//         itemOrderData.restaurantDetails.address!.latitude!,
+//         itemOrderData.restaurantDetails.address!.longitude!);
 //     LatLng deliveryLocation = LatLng(itemOrderData.userAddress!.latitude,
 //         itemOrderData.userAddress!.longitude);
 //     Marker currentLocationMarker = Marker(
@@ -148,7 +149,7 @@ class RideProvider extends ChangeNotifier {
 //     Marker destinationMarker = Marker(
 //       markerId: const MarkerId('DestinationLocation'),
 //       position: itemOrderData.orderStatus == OrderServices.orderStatus(0)
-//           ? resturantLocation
+//           ? restaurantLocation
 //           : deliveryLocation,
 //       icon: destinationIcon!,
 //     );
@@ -167,13 +168,13 @@ class RideProvider extends ChangeNotifier {
 //   nullifyRideDatas() {
 //     inDelivery = false;
 //     polylineCoordinatesListTowardsDelivery = [];
-//     polylineCoordinatesListTowardsResturant = [];
+//     polylineCoordinatesListTowardsrestaurant = [];
 //     deliveryMarker = Set<Marker>();
 //     polylineSetTowardsDelivery = {};
-//     polylineSetTowardsResturant = {};
+//     polylineSetTowardsrestaurant = {};
 //     polylineTowardsDelivery = null;
-//     polylineTowardsResturant = null;
-//     resturantLoaction = null;
+//     polylineTowardsrestaurant = null;
+//     restaurantLoaction = null;
 //     deliveryLocation = null;
 //     orderData = null;
 //     notifyListeners();
